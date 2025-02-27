@@ -1,2 +1,2 @@
-# Illuminator-Demonstrator
-A system for demonstrations of the Illuminator software. WIP
+# Illuminator-Demonstratinator
+A physical setup for educational purposes and demonstrating the Illuminator software. WIP
