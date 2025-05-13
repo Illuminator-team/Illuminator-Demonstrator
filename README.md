@@ -17,7 +17,7 @@ This section delves into the code behind the Illuminator demonstrator kit.
 ### Master-Worker Raspberry Pis
 For the cluster setup the Raspberry Pis need to be connected to the same network. The master Raspberry pi holds the yaml file of the scenario to be run. It connects to the worker Raspberry Pis through ssh and "tasks" them with running specific models of the scenario. 
 
-![alt text](image-1.png)
+![alt text](figs/image-1.png)
 *Example setup of a Raspberry Pi cluster running the Illminator*
 
 
@@ -80,7 +80,7 @@ Execute `run.sh` and run `Illuminator scenario run your_scenario.yaml`.
 
 The physical connections between Raspberry Pis are established through an addressable LED strip with two ATtiny85 Digispark boards on each side. From now on the combination of these 3 components will be referred to as a kit "cable" for this guide.
 
-![DIagram of Illuminator Kit Physical Setup](image-2.png)
+![DIagram of Illuminator Kit Physical Setup](figs/image-2.png)
 *Diagram of a simple physical connection between two Raspberry Pis* 
 
 ### Raspberry Pi <-> ATtiny85 Digispark Communication
@@ -99,12 +99,12 @@ The ATtiny's logic reads the 3 given parameters for the animation and executes i
 
 Specific Arduino IDE settings are required to program the ATtiny85. Firstly a new board manager must be added. Go to File> Preferences and add `https://descartes.net/package_drazzy.com_index.json` in the Additional board manager URLs field. 
 
-![Board Manager Settings](image-4.png)
+![Board Manager Settings](figs/image-4.png)
 *Add the additional board manager URL*
 
 Next navigate and select Tools>Board>ATtinyCore>ATtiny85 (Micronucleus /DigiSpark).
 
-![Tools Menu Settings](image-3.png)
+![Tools Menu Settings](figs/image-3.png)
 *Select the right board in the Tools menu*
 
 You can now program your ATtiny85 Digispark by clicking upload and connecting the board to your USB com port.
