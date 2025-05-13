@@ -1,6 +1,6 @@
 # Illuminator Demonstrator Kit
 
-The Illuminator demonstrator kit is a new version of the Illuminator cluster. This setup is meant to run on multiple Raspberry Pi's for a hand-on demonstration of energy components and their interactions. 
+The Illuminator Demonstrator Kit is a new version of the Illuminator cluster. This setup is meant to run on multiple Raspberry Pi's for a hand-on demonstration of energy components and their interactions. This repository holds any additional material needed to set up the Illuminator Demonstrator Kit, the cluster software can be found in the main [Illuminator Github Repository](https://github.com/Illuminator-team/Illuminator) in the cluster branch.
 
 ## WIP & Future plans
 
