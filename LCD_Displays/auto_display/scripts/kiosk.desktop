@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Kiosk Starter
+Exec=/home/Raspinator/bin/start-kiosk.sh
+X-GNOME-Autostart-enabled=true

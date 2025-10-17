@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kiosk</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      background: #fff;
+      font-family: 'Roboto Slab', serif;
+      cursor: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* push content to bottom */
+      align-items: center;
+    }
+
+    img {
+      width: 100%;      /* full width */
+      height: auto;     /* keep aspect ratio */
+      display: block;
+    }
+
+  .footer {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    font-size: 1rem;
+    color: #aaa;   /* lighter grey */
+    opacity: 0.8;
+    user-select: none;
+    font-weight: 400;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="ipbar" id="ip">IP: …</div>
+  <img src="file:///home/Raspinator/Pictures/wind.gif" alt="Illuminator">
+  <div class="footer">Illuminator 2025    .</div>
+
+  <script>
+    let hideTimer;
+
+    function hideCursor() {
+      document.body.style.cursor = "none";
+    }
+
+    function showCursorTemporarily() {
+      document.body.style.cursor = "default";  // show cursor
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hideCursor, 2000); // hide again after 2s
+    }
+
+    document.addEventListener("mousemove", showCursorTemporarily);
+    document.addEventListener("click", showCursorTemporarily);
+
+    hideCursor();
+    
+    // Fetch & display IP every 10s
+    async function updateIP(){
+      try{
+        const r = await fetch("http://localhost:8080/ip");
+        const d = await r.json();
+        document.getElementById("ip").textContent = "IP: " + (d.ip || "unknown");
+      }catch(e){
+        document.getElementById("ip").textContent = "IP: unknown";
+      }
+    }
+    updateIP();
+    setInterval(updateIP, 10000);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+<!--
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Raspberry Kiosk</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html, body { margin:0; height:100%; background:#fff; display:grid; place-items:center; }
+    img { max-width:100vw; max-height:100vh; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <img src="file:///home/Raspinator/Pictures/tud_logo.png" alt="TU Delft" />
+  <script>
+    function exitKiosk(){
+      fetch("http://localhost:8080/exit",{method:"POST"}).catch(()=>{});
+    }
+    document.body.addEventListener("click", exitKiosk);
+    document.addEventListener("keydown", exitKiosk);
+  </script>
+</body>
+</html>
+
+-->
