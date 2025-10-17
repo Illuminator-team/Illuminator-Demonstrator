@@ -1,8 +1,10 @@
 #include "DigiCDC.h"
 #include <Adafruit_NeoPixel.h>
 
-#define LED_PIN 0   // WS2812B Data Line on PB0 (Pin 0)
-#define LED_COUNT 20 // Number of LEDs
+#define LED_PIN 0   // WS2812B Data Line on PB0 (Pin 0), since Pin 0 is connected to DIN of LED strip
+#define LED_COUNT 20 // Number of LEDs, Change this for longer strips
+#define ID 0 // ID needs to be shared among ATtiny boards of the same LED strip and unique compared to other LED strips
+
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -61,7 +63,7 @@ void requestSpeedFromPi() {
             animationSpeed = 10;
             break;
           default:
-            animationSpeed = 500;
+            animationSpeed = -1;
             break;
         }
 
@@ -82,9 +84,9 @@ void requestSpeedFromPi() {
             b = 254;
             break;
           default:
-            r = 0;
-            g = 0;
-            b = 0;
+            r = 10;
+            g = 10;
+            b = 10;
             break;
         }
 
@@ -99,9 +101,10 @@ void requestSpeedFromPi() {
             direction = 0;
             break;
         }
-
-        // SerialUSB.delay(100);
-        // SerialUSB.print("speed: ");
+        
+        SerialUSB.delay(10);
+        SerialUSB.print(ID);
+        SerialUSB.delay(10);
         // SerialUSB.print(animationSpeed);
         // SerialUSB.write(c2);
         // SerialUSB.println("'!!!");
@@ -119,7 +122,7 @@ void requestSpeedFromPi() {
 }
 
 
-// Cyan Flow Animation with dynamic speed
+// Flow Animation with dynamic speed
 void cyanFlowAnimation(int wait, uint8_t r, uint8_t g, uint8_t b, bool direction) {
 
   if (wait == -1){
